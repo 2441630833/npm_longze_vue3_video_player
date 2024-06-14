@@ -1,11 +1,10 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2020-11-03 16:29:47
- * @LastEditors: itab.link
- * @LastEditTime: 2023-11-09 15:50:42
+ * @Author: longze
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
 */
-
 <template>
   <div
     ref="refPlayerWrap"
@@ -598,7 +597,15 @@ const init = (): void => {
     });
   }
 };
-
+// 定义 abort 方法
+function abortHandle() {
+    Hls.detachMedia(); // 解除绑定
+    Hls.stopLoad(); // 停止加载
+    Hls.destroy(); // 销毁 Hls 实例
+}
+// function test() {
+//   console.log("test");
+// };
 watch(
   () => props.src,
   () => {
@@ -617,6 +624,7 @@ defineExpose({
   play: playHandle, //播放
   pause: pauseHandle, //暂停
   togglePlay, //暂停或播放
+  destroyHLS: abortHandle, 
 });
 </script>
 

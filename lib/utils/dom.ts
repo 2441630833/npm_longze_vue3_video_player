@@ -1,10 +1,10 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2021-08-23 21:17:54
- * @LastEditors: web.王晓冬
- * @LastEditTime: 2021-08-26 14:03:35
+ * @Author: longze
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
- */
+*/
 export const on = function (
     element: Element | HTMLElement | Document | Window,
     event: string,

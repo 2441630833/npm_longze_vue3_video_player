@@ -1,27 +1,9 @@
-<!--
- * @Author: web.王晓冬
- * @Date: 2021-08-19 18:56:59
- * @LastEditors: itab.link
- * @LastEditTime: 2023-11-09 15:44:51
- * @Description: file content
--->
 
-[![Version](https://img.shields.io/npm/dt/vue3-video-play.svg?style=flat-square)](https://www.npmjs.com/package/vue3-video-play)
-[![Downloads](https://img.shields.io/npm/v/vue3-video-play.svg?style=flat-square)](https://www.npmjs.com/package/vue3-video-play)
-[![GitHub stars](https://img.shields.io/github/stars/xdlumia/vue3-video-play.svg?style=flat-square)](https://github.com/xdlumia/vue3-video-play/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/xdlumia/vue3-video-play.svg?style=flat-square)](https://github.com/xdlumia/vue3-video-play/issues)
-[![GitHub forks](https://img.shields.io/github/forks/xdlumia/vue3-video-play.svg?style=flat-square)](https://github.com/xdlumia/vue3-video-play/network)
-[![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square)](https://github.com/xdlumia/vue3-video-play)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/xdlumia/vue3-video-play)
-
-[![NPM](https://nodei.co/npm/vue3-video-play.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vue3-video-play)
 
 <span style="color:#cb3837"> **必须使用 vue@3.2.2及以上版本**</span>
 
-### Vue3-video-play
-
-适用于 Vue3 的 hls.js 播放器组件 | 并且支持 MP4/WebM/Ogg 格式
-配置强大，UI 还算好看
+### longze-vue3-video-player
+增加destroyHLS方法，修改README说明
 
 ## 功能一览
 
@@ -36,9 +18,6 @@
 9. 支持 hls 视频流播放，支持直播
 10. hls 播放支持清晰度切换
 
-# 主页示例
-
-[https://codelife.cc/vue3-video-play/](https://codelife.cc/vue3-video-play/)
 
 ## 近期更新 v1.3.3 🎉
 
@@ -51,13 +30,13 @@
 npm 安装：
 
 ```bash
-npm i vue3-video-play --save
+npm i longze-vue3-video-player --save
 ```
 
 yarn 安装：
 
 ```bash
-yarn add vue3-video-play --save
+yarn add longze-vue3-video-player --save
 ```
 
 ## 开始使用
@@ -69,8 +48,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 let app = createApp(App);
 
-import vue3videoPlay from "vue3-video-play"; // 引入组件
-import "vue3-video-play/dist/style.css"; // 引入css
+import vue3videoPlay from "longze-vue3-video-player"; // 引入组件
+import "longze-vue3-video-player/dist/style.css"; // 引入css
 app.use(vue3videoPlay);
 
 app.mount("#app");
@@ -80,8 +59,8 @@ app.mount("#app");
 
 ```js
 // require style
-import "vue3-video-play/dist/style.css";
-import { videoPlay } from "vue3-video-play";
+import "longze-vue3-video-player/dist/style.css";
+import { videoPlay } from "longze-vue3-video-player";
 export default {
   components: {
     videoPlay,
@@ -205,7 +184,7 @@ const options = reactive({
 
 ## 事件示例
 
-:::demo `vue3-video-play` 支持原生`video`所有事件。
+:::demo `longze-vue3-video-player` 支持原生`video`所有事件。
 
 ```vue
 <template>
@@ -252,7 +231,7 @@ const onCanplay = (ev) => {
 
 ## Hls m3u8 视频/直播
 
-:::demo `vue3-video-play` 支持 m3u8(hls)播放
+:::demo `longze-vue3-video-player` 支持 m3u8(hls)播放
 
 ```vue
 <template>
@@ -278,10 +257,47 @@ const options = reactive({
 ```
 
 :::
+## Hls m3u8 视频/直播销毁事件/播放事件/暂停事件
+```vue
+<template>
+  <div>
+    <vue3VideoPlay
+      ref="videoRef"
+      width="800px"
+      title="冰河世纪"
+      :src="options.src"
+      :type="options.type"
+      :autoPlay="false"
+    />
+    <button @click="destroyHLS">销毁HLS流，不再拉取请求</button>
+    <button @click="play">播放</button>
+    <button @click="pause">暂停</button>
+  </div>
+</template>
+<script setup lang="ts">
+import { reactive } from "vue";
+const videoRef = ref(null)
+const options = reactive({
+  src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
+  type: "m3u8", //视频类型
+});
+const destroyHLS = () => {
+  videoRef.value.destroyHLS();
+}
+const play = () => {
+  videoRef.value.play();
+}
+const pause =  () => {
+  videoRef.value.pause();
+}
+</script>
+
+<style scoped></style>
+```
 
 ## Props
 
-vue3-video-play 支持 video 原生所有 Attributes [video 原生属性](https://segmentfault.com/a/1190000008053507) 使用方式和 props 属性使用一致
+longze-vue3-video-player 支持 video 原生所有 Attributes [video 原生属性](https://segmentfault.com/a/1190000008053507) 使用方式和 props 属性使用一致
 
 | 名称          |         说明          |  类型   |                                               可选值                                               |                                               默认值                                               |
 | ------------- | :-------------------: | :-----: | :------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
@@ -322,30 +338,13 @@ vue3-video-play 支持 video 原生所有 Attributes [video 原生属性](https:
 
 ## Events
 
-vue3-video-play 支持 video 原生所有事件 [video 默认事件](https://segmentfault.com/a/1190000008053507)
+longze-vue3-video-player 支持 video 原生所有事件 [video 默认事件](https://segmentfault.com/a/1190000008053507)
 
 | 事件名称       | 说明               | 回调  |
 | -------------- | ------------------ | ----- |
-| mirrorChange   | 镜像翻转事件       | val   |
-| loopChange     | 循环播放开关事件   | val   |
-| lightOffChange | 关灯模式事件       | val   |
-| loadstart      | 客户端开始请求数据 | event |
-| progress       | 客户端正在请求数据 | event |
-| error          | 请求数据时遇到错误 | event |
-| stalled        | 网速失速           | event |
 | play           | 开始播放时触发     | event |
 | pause          | 暂停时触发         | event |
-| loadedmetadata | 成功获取资源长度   | event |
-| loadeddata     | 缓冲中             | event |
-| waiting        | 等待数据，并非错误 | event |
-| playing        | 开始回放           | event |
-| canplay        | 暂停状态下可以播放 | event |
-| canplaythrough | 可以持续播放       | event |
-| timeupdate     | 更新播放时间       | event |
-| ended          | 播放结束           | event |
-| ratechange     | 播放速率改变       | event |
-| durationchange | 资源长度改变       | event |
-| volumechange   | 音量改变           | event |
+| destroyHLS     | 销毁Hls 实例，停止持续拉取直播流 （适用m3u8）| event |
 
 ## 快捷键说明
 
@@ -362,8 +361,6 @@ vue3-video-play 支持 video 原生所有事件 [video 默认事件](https://seg
 
 # Author
 
-[xdlumia](https://codelife.cc)
+[longze]
 
-# 点个 start
 
-[vue3-video-play](https://github.com/xdlumia/vue3-video-play)

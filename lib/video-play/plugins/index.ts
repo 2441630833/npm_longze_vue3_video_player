@@ -1,10 +1,10 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2021-08-25 11:19:35
- * @LastEditors: web.王晓冬
- * @LastEditTime: 2021-09-02 16:03:36
+ * @Author: longze
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
- */
+*/
 import type { PropType } from "vue";
 export const videoEmits = [
   "loadstart",

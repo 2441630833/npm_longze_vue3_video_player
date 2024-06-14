@@ -1,8 +1,8 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2021-08-20 19:10:57
- * @LastEditors: itab.link
- * @LastEditTime: 2023-11-09 15:38:31
+ * @Author: web.zlz
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
 */
 <template>
@@ -12,7 +12,7 @@
   <div style="text-align: center">
     {{ options.webFullScreen }}
     <button
-      @click="options.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'"
+      @click="change"
     >
       {{ options.src }}
     </button>
@@ -22,6 +22,7 @@
       v-bind="options"
     />
   </div>
+  <button @click="test">test</button>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +60,15 @@ const options = reactive({
   ],
 });
 const video = ref(null);
-
+const test = () => {
+  console.log(video.value);
+  // video.value.test();
+  video.value.destroyHLS();
+};
+const change = () => {
+  options.src = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
+  options.type = "m3u8"
+};
 nextTick(() => {
   console.log(video.value);
 });

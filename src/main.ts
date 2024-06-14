@@ -1,10 +1,10 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2021-08-19 10:25:40
- * @LastEditors: web.王晓冬
- * @LastEditTime: 2021-08-20 20:07:18
+ * @Author: web.zlz
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
- */
+*/
 import { createApp } from 'vue'
 import App from './App.vue'
 

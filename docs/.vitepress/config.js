@@ -1,10 +1,10 @@
 /*
- * @Author: web.王晓冬
- * @Date: 2021-08-19 18:56:59
- * @LastEditors: web.王晓冬
- * @LastEditTime: 2021-10-10 22:37:33
+ * @Author: longze
+ * @Date: 2024-06-14 15:50:42
+ * @LastEditors: longze
+ * @LastEditTime: 2024-06-14 15:50:42
  * @Description: file content
- */
+*/
 module.exports = {
     title: "Vue3VideoPlay", // 网站标题
     description: 'Vue3VideoPlay 基于vue3编写的视频播放器', //网站描述
