@@ -1,13 +1,12 @@
 {
   "name": "longze-vue3-video-player",
-  "version": "1.0.7",
-  "description": "增加destroyHLS方法，修改README说明",
+  "version": "1.1.3",
+  "description": "修复全局引入无效的bug,增加模块类型声明",
   "files": [
     "dist",
     "lib"
   ],
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.mjs",
+  "main": "./lib/index.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

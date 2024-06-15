@@ -1,10 +1,13 @@
-
-
-<span style="color:#cb3837"> **必须使用 vue@3.2.2及以上版本**</span>
+<span style="color:#cb3837"> **必须使用 vue@3.2.2及以上版本，播放m3u8格式视频必须定义视频类型**</span>
 
 ### longze-vue3-video-player
-增加destroyHLS方法，修改README说明
 
+1、修复全局引入无效的bug,增加模块类型声明
+2、增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
+3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
+4、增加destroyHLS方法，修改README说明
+5、修复vue3-video-player package.json bug 适用于 Vue3 的 hls.js 播放器组件 | 并且支持 MP4/WebM/Ogg 格式 配置强大
+6、修复README
 ## 功能一览
 
 1. 支持快捷键操作
@@ -18,10 +21,13 @@
 9. 支持 hls 视频流播放，支持直播
 10. hls 播放支持清晰度切换
 
+## 近期更新 v1.1.3 🎉
 
-## 近期更新 v1.3.3 🎉
-
-- 修复: 右键事件错误
+- 修复全局引入无效的bug,增加模块类型声明
+- 增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
+- 增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
+- 增加destroyHLS方法，修改README说明
+- 修复vue3-video-player package.json bug
 
 # 使用指南
 
@@ -43,27 +49,42 @@ yarn add longze-vue3-video-player --save
 
 #### 全局使用
 
+##### 全局引入
+
 ```js
 import { createApp } from "vue";
 import App from "./App.vue";
 let app = createApp(App);
 
-import vue3videoPlay from "longze-vue3-video-player"; // 引入组件
+import longzeVideoPlay from "longze-vue3-video-player"; // 引入组件
 import "longze-vue3-video-player/dist/style.css"; // 引入css
-app.use(vue3videoPlay);
+app.use(longzeVideoPlay);
 
 app.mount("#app");
 ```
 
-#### 组件内使用
+##### 全局引入后组件内使用（虽然引入的是longzeVideoPlay，但全局引入后组件使用要用vue3VideoPlay，后面有时间会改）
+
+```js
+        <vue3VideoPlay
+          ref="videoRef"
+          width="100%"
+          height="100%"
+          :src="testOptions.src"
+          :type="testOptions.type"
+          :controlBtns="controlBtns"
+        />
+```
+
+#### 组件内引入直接使用（组件内引入直接使用longzeVideoPlay即可）
 
 ```js
 // require style
 import "longze-vue3-video-player/dist/style.css";
-import { videoPlay } from "longze-vue3-video-player";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 export default {
   components: {
-    videoPlay,
+    longzeVideoPlay,
   },
 };
 ```
@@ -76,7 +97,7 @@ export default {
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       v-bind="options"
       poster="https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg"
     />
@@ -85,6 +106,8 @@ export default {
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "800px", //播放器宽度
   height: "450px", //播放器高度
@@ -125,7 +148,7 @@ const options = reactive({
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       v-bind="options"
       poster="https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg"
     />
@@ -134,7 +157,8 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "500px", //播放器高度
   height: "260px", //播放器高度
@@ -157,7 +181,7 @@ const options = reactive({
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       v-bind="options"
       poster="https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg"
     />
@@ -166,7 +190,8 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "500px", //播放器高度
   height: "260px", //播放器高度
@@ -189,7 +214,7 @@ const options = reactive({
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       width="800px"
       title="钢铁侠"
       :src="options.src"
@@ -204,7 +229,8 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   src: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4", //视频源
   poster: "", //封面
@@ -236,7 +262,7 @@ const onCanplay = (ev) => {
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       width="800px"
       title="冰河世纪"
       :src="options.src"
@@ -247,6 +273,8 @@ const onCanplay = (ev) => {
 </template>
 <script setup lang="ts">
 import { reactive } from "vue";
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
   type: "m3u8", //视频类型
@@ -257,11 +285,13 @@ const options = reactive({
 ```
 
 :::
+
 ## Hls m3u8 视频/直播销毁事件/播放事件/暂停事件
+
 ```vue
 <template>
   <div>
-    <vue3VideoPlay
+    <longzeVideoPlay
       ref="videoRef"
       width="800px"
       title="冰河世纪"
@@ -276,20 +306,22 @@ const options = reactive({
 </template>
 <script setup lang="ts">
 import { reactive } from "vue";
-const videoRef = ref(null)
+import "longze-vue3-video-player/dist/style.css";
+import { longzeVideoPlay } from "longze-vue3-video-player";
+const videoRef = ref(null);
 const options = reactive({
   src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
   type: "m3u8", //视频类型
 });
 const destroyHLS = () => {
   videoRef.value.destroyHLS();
-}
+};
 const play = () => {
   videoRef.value.play();
-}
-const pause =  () => {
+};
+const pause = () => {
   videoRef.value.pause();
-}
+};
 </script>
 
 <style scoped></style>
@@ -340,27 +372,25 @@ longze-vue3-video-player 支持 video 原生所有 Attributes [video 原生属�
 
 longze-vue3-video-player 支持 video 原生所有事件 [video 默认事件](https://segmentfault.com/a/1190000008053507)
 
-| 事件名称       | 说明               | 回调  |
-| -------------- | ------------------ | ----- |
-| play           | 开始播放时触发     | event |
-| pause          | 暂停时触发         | event |
-| destroyHLS     | 销毁Hls 实例，停止持续拉取直播流 （适用m3u8）| event |
+| 事件名称   | 说明                                          | 回调  |
+| ---------- | --------------------------------------------- | ----- |
+| play       | 开始播放时触发                                | event |
+| pause      | 暂停时触发                                    | event |
+| destroyHLS | 销毁Hls 实例，停止持续拉取直播流 （适用m3u8） | event |
 
 ## 快捷键说明
 
 支持快捷键操作
-| 键名       | 说明                          |
+| 键名 | 说明 |
 | ---------- | ----------------------------- |
-| Space      | 暂停/播放                     |
+| Space | 暂停/播放 |
 | 方向右键 → | 单次快进 10s，长按 5 倍速播放 |
-| 方向左键 ← | 快退 10s                      |
-| 方向上键 ↑ | 音量+10%                      |
-| 方向下键 ↓ | 音量-10%                      |
-| Esc        | 退出全屏/退出网页全屏         |
-| F          | 全屏/退出全屏                 |
+| 方向左键 ← | 快退 10s |
+| 方向上键 ↑ | 音量+10% |
+| 方向下键 ↓ | 音量-10% |
+| Esc | 退出全屏/退出网页全屏 |
+| F | 全屏/退出全屏 |
 
 # Author
 
 [longze]
-
-

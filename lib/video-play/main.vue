@@ -450,8 +450,20 @@ const inputFocusHandle = () => {
   if (isMobile) return;
   refInput.value.focus();
 };
+let savedPosition = 0; // 初始位置
+// 保存播放位置的函数
+function savePosition() {
+    savedPosition = state.dVideo.currentTime;
+}
 // 播放方法
 const playHandle = () => {
+  if (props.type=="m3u8") {
+  Hls.attachMedia(state.dVideo);
+  Hls.loadSource(props.src);
+  if (savedPosition > 0) {
+    state.dVideo.currentTime = savedPosition;
+  }
+  }
   state.loadStateType = "play";
   //首次播放会报错：DOMException: The play() request was interrupted by a new load request.
   state.dVideo.play().catch(() => {
@@ -473,6 +485,10 @@ const playHandle = () => {
 const pauseHandle = () => {
   // state.loadStateType = 'pause' // 暂停状态
   state.dVideo.pause();
+  if (props.type=="m3u8") {
+    savePosition();
+    abortHandle();
+  }
   state.playBtnState = "play"; // 暂停后要显示播放按钮
 };
 
@@ -601,7 +617,7 @@ const init = (): void => {
 function abortHandle() {
     Hls.detachMedia(); // 解除绑定
     Hls.stopLoad(); // 停止加载
-    Hls.destroy(); // 销毁 Hls 实例
+    // Hls.destroy(); // 销毁 Hls 实例
 }
 // function test() {
 //   console.log("test");

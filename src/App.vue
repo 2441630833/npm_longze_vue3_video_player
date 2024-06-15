@@ -16,8 +16,8 @@
     >
       {{ options.src }}
     </button>
-    <videoPlay
-      ref="video"
+    <longzeVideoPlay
+      ref="videoRef"
       style="display: inline-block; width: 100%"
       v-bind="options"
     />
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, nextTick } from "vue";
-import { videoPlay } from "../lib/index.js";
+import { longzeVideoPlay } from "../lib/index.js";
 
 const options = reactive({
   width: "800px",
@@ -43,11 +43,11 @@ const options = reactive({
   volume: 0.3, //默认音量大小
   control: true, //是否显示控制器
   title: "", //视频名称
-  type: "video/mp4",
-  // src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
-  src: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4", //视频源
+  type: "m3u8",
+  src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
+  // src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", //视频源
   // src: "https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8", //视频源
-  poster: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg", //封面
+  // poster: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg", //封面
   controlBtns: [
     "audioTrack",
     "quality",
@@ -59,18 +59,18 @@ const options = reactive({
     "fullScreen",
   ],
 });
-const video = ref(null);
+const videoRef = ref(null);
 const test = () => {
-  console.log(video.value);
+  console.log(videoRef.value);
   // video.value.test();
-  video.value.destroyHLS();
+  videoRef.value.destroyHLS();
 };
 const change = () => {
   options.src = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
   options.type = "m3u8"
 };
 nextTick(() => {
-  console.log(video.value);
+  console.log(videoRef.value);
 });
 </script>
 
