@@ -1,10 +1,5 @@
-/*
- * @Author: longze
- * @Date: 2024-06-14 15:50:42
- * @LastEditors: longze
- * @LastEditTime: 2024-06-14 15:50:42
- * @Description: file content
-*/
+/* * @Author: longze * @Date: 2024-06-14 15:50:42 * @LastEditors: longze *
+@LastEditTime: 2024-06-14 15:50:42 * @Description: file content */
 <template>
   <div
     ref="refPlayerWrap"
@@ -192,8 +187,8 @@
                   state.volume == 0 || state.muted
                     ? 'mute'
                     : state.volume > 0.5
-                    ? 'up'
-                    : 'down'
+                      ? 'up'
+                      : 'down'
                 }`"
               ></d-icon>
             </span>
@@ -255,7 +250,7 @@
 </template>
 <script lang="ts">
 export default {
-  name: "vue3VideoPlay",
+  name: "longzeVideoPlay",
   inheritAttrs: false,
 };
 </script>
@@ -453,29 +448,29 @@ const inputFocusHandle = () => {
 let savedPosition = 0; // 初始位置
 // 保存播放位置的函数
 function savePosition() {
-    savedPosition = state.dVideo.currentTime;
+  savedPosition = state.dVideo.currentTime;
 }
 // 播放方法
 const playHandle = () => {
-  if (props.type=="m3u8") {
-  Hls.attachMedia(state.dVideo);
-  Hls.loadSource(props.src);
-  if (savedPosition > 0) {
-    state.dVideo.currentTime = savedPosition;
-  }
+  if (props.type == "m3u8") {
+    Hls.attachMedia(state.dVideo);
+    Hls.loadSource(props.src);
+    if (savedPosition > 0) {
+      state.dVideo.currentTime = savedPosition;
+    }
   }
   state.loadStateType = "play";
   //首次播放会报错：DOMException: The play() request was interrupted by a new load request.
   state.dVideo.play().catch(() => {
     //处理无缓冲报错问题
-    state.dVideo.load()
+    state.dVideo.load();
     setTimeout(() => {
       state.dVideo.play().catch(() => {
         //如果依然报错，则显示错误状态。
         state.playBtnState = "replay";
         state.loadStateType = "error";
-      })
-    },200)
+      });
+    }, 200);
   });
   state.playBtnState = "pause";
   // 播放后清空状态
@@ -485,7 +480,7 @@ const playHandle = () => {
 const pauseHandle = () => {
   // state.loadStateType = 'pause' // 暂停状态
   state.dVideo.pause();
-  if (props.type=="m3u8") {
+  if (props.type == "m3u8") {
     savePosition();
     abortHandle();
   }
@@ -572,11 +567,11 @@ const toggleFullScreenHandle = () => {
 };
 
 const init = (): void => {
-  if (!state.dVideo.canPlayType(props.type)) {
-    console.error(
-      "vue3-video-play: Format not supported,Check the [type] parameter"
-    );
-  }
+  // if (!state.dVideo.canPlayType(props.type)) {
+  //   console.error(
+  //     "vue3-video-play: Format not supported,Check the [type] parameter"
+  //   );
+  // }
   if (
     state.dVideo.canPlayType(props.type) ||
     state.dVideo.canPlayType("application/vnd.apple.mpegurl")
@@ -618,7 +613,7 @@ function abortHandle() {
     Hls.detachMedia(); // 解除绑定
     Hls.stopLoad(); // 停止加载
     // Hls.destroy(); // 销毁 Hls 实例
-}
+};
 // function test() {
 //   console.log("test");
 // };
@@ -640,20 +635,21 @@ defineExpose({
   play: playHandle, //播放
   pause: pauseHandle, //暂停
   togglePlay, //暂停或播放
-  destroyHLS: abortHandle, 
+  destroyHLS: abortHandle,
 });
 </script>
-
 
 <style lang="less" scoped>
 @import "../style/reset.less";
 @import "../style/transition.less";
 @import "../style/animate.less";
 @import "../style/base.less";
+
 .d-player-wrap {
   --primary-color: v-bind(hexToRgbaColor);
   width: v-bind(width);
   height: v-bind(height);
 }
+
 @import "../style/vPlayer.less";
 </style>

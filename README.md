@@ -7,7 +7,8 @@
 3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
 4、增加destroyHLS方法，修改README说明
 5、修复vue3-video-player package.json bug 适用于 Vue3 的 hls.js 播放器组件 | 并且支持 MP4/WebM/Ogg 格式 配置强大
-6、修复README
+6、修复README，更换组件名称
+7、注释掉类型判断错误打印输出
 ## 功能一览
 
 1. 支持快捷键操作
@@ -21,13 +22,15 @@
 9. 支持 hls 视频流播放，支持直播
 10. hls 播放支持清晰度切换
 
-## 近期更新 v1.1.3 🎉
+## 近期更新 v1.1.5 🎉
 
 - 修复全局引入无效的bug,增加模块类型声明
 - 增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 - 增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
 - 增加destroyHLS方法，修改README说明
 - 修复vue3-video-player package.json bug
+- 更换组件名称
+- 注释掉类型判断错误打印输出
 
 # 使用指南
 
@@ -63,21 +66,18 @@ app.use(longzeVideoPlay);
 app.mount("#app");
 ```
 
-##### 全局引入后组件内使用（虽然引入的是longzeVideoPlay，但全局引入后组件使用要用vue3VideoPlay，后面有时间会改）
-
+##### 全局引入后组件内使用
+例：
 ```js
-        <vue3VideoPlay
+        <longzeVideoPlay
           ref="videoRef"
-          width="100%"
-          height="100%"
           :src="testOptions.src"
           :type="testOptions.type"
           :controlBtns="controlBtns"
         />
 ```
 
-#### 组件内引入直接使用（组件内引入直接使用longzeVideoPlay即可）
-
+#### 组件内引入直接使用
 ```js
 // require style
 import "longze-vue3-video-player/dist/style.css";
@@ -106,8 +106,6 @@ export default {
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "800px", //播放器宽度
   height: "450px", //播放器高度
@@ -157,8 +155,6 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "500px", //播放器高度
   height: "260px", //播放器高度
@@ -190,8 +186,6 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   width: "500px", //播放器高度
   height: "260px", //播放器高度
@@ -229,8 +223,6 @@ const options = reactive({
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   src: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4", //视频源
   poster: "", //封面
@@ -273,8 +265,6 @@ const onCanplay = (ev) => {
 </template>
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const options = reactive({
   src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
   type: "m3u8", //视频类型
@@ -306,8 +296,6 @@ const options = reactive({
 </template>
 <script setup lang="ts">
 import { reactive } from "vue";
-import "longze-vue3-video-player/dist/style.css";
-import { longzeVideoPlay } from "longze-vue3-video-player";
 const videoRef = ref(null);
 const options = reactive({
   src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", //视频源
