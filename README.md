@@ -2,13 +2,14 @@
 
 ### longze-vue3-video-player
 
-1、修复全局引入无效的bug,增加模块类型声明
+1、修复全局引入无效的bug
 2、增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
 4、增加destroyHLS方法，修改README说明
 5、修复vue3-video-player package.json bug 适用于 Vue3 的 hls.js 播放器组件 | 并且支持 MP4/WebM/Ogg 格式 配置强大
 6、修复README，更换组件名称
 7、注释掉类型判断错误打印输出
+8、增加模块类型声明，修复dev运行正常，但build时报错，找不到longze-vue3-video-player依赖bug
 ## 功能一览
 
 1. 支持快捷键操作
@@ -31,7 +32,7 @@
 - 修复vue3-video-player package.json bug
 - 更换组件名称
 - 注释掉类型判断错误打印输出
-
+- 增加模块类型声明，修复dev运行正常，但build时报错，找不到longze-vue3-video-player依赖bug
 # 使用指南
 
 ## 安装

@@ -59,11 +59,12 @@ const options = reactive({
     "fullScreen",
   ],
 });
-const videoRef = ref(null);
+const videoRef = ref<any>(null);
 const test = () => {
-  console.log(videoRef.value);
-  // video.value.test();
-  videoRef.value.destroyHLS();
+  if (videoRef.value) {
+    console.log(videoRef.value);
+    videoRef.value.destroyHLS();
+  }
 };
 const change = () => {
   options.src = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'

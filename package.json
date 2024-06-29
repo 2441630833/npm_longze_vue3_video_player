@@ -3,7 +3,6 @@
   "version": "1.1.5",
   "description": "注释掉类型判断错误打印输出",
   "files": [
-    "dist",
     "lib"
   ],
   "main": "./lib/index.js",
