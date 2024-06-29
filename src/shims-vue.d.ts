@@ -4,3 +4,5 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+//添加模块类型声明
+declare module 'longze-vue3-video-player' 
