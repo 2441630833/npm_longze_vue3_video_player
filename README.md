@@ -1,7 +1,7 @@
 <span style="color:#cb3837"> **必须使用 vue@3.2.2及以上版本，播放m3u8格式视频必须定义视频类型**</span>
 
 ### longze-vue3-video-player
-[本项目Github源码链接](https://github.com/2441630833/npm_longze_vue3_video_player)
+[本项目Github源码链接](https://github.com/2441630833/npm_longze_vue3_video_player)<br>
 1、修复全局引入无效的bug
 2、增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求

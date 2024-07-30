@@ -1,7 +1,7 @@
 {
   "name": "longze-vue3-video-player",
-  "version": "1.1.5",
-  "description": "注释掉类型判断错误打印输出",
+  "version": "1.1.6",
+  "description": "增加控制拖动滚动条属性方法，反转speed方法，修复props控制speed失效bug",
   "files": [
     "lib"
   ],
