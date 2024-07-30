@@ -35,6 +35,7 @@ const options = reactive({
   color: "#409eff",
   muted: false, //静音
   webFullScreen: false,
+  speed:false,
   autoPlay: false, //自动播放
   currentTime: 0,
   loop: false, //循环播放
@@ -63,7 +64,9 @@ const videoRef = ref<any>(null);
 const test = () => {
   if (videoRef.value) {
     console.log(videoRef.value);
-    videoRef.value.destroyHLS();
+    // options.speed = !options.speed;
+    // videoRef.value.destroyHLS();
+    videoRef.value.reversePropsSpeed();
   }
 };
 const change = () => {

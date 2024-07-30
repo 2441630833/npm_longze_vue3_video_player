@@ -1,7 +1,7 @@
 <span style="color:#cb3837"> **必须使用 vue@3.2.2及以上版本，播放m3u8格式视频必须定义视频类型**</span>
 
 ### longze-vue3-video-player
-
+[本项目Github源码链接](https://github.com/2441630833/npm_longze_vue3_video_player)
 1、修复全局引入无效的bug
 2、增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
@@ -10,6 +10,7 @@
 6、修复README，更换组件名称
 7、注释掉类型判断错误打印输出
 8、增加模块类型声明，修复dev运行正常，但build时报错，找不到longze-vue3-video-player依赖bug
+9、增加控制拖动滚动条属性方法，反转speed方法，修复props控制speed失效bug
 ## 功能一览
 
 1. 支持快捷键操作
@@ -23,7 +24,7 @@
 9. 支持 hls 视频流播放，支持直播
 10. hls 播放支持清晰度切换
 
-## 近期更新 v1.1.5 🎉
+## 近期更新 v1.1.6 🎉
 
 - 修复全局引入无效的bug,增加模块类型声明
 - 增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
@@ -33,6 +34,7 @@
 - 更换组件名称
 - 注释掉类型判断错误打印输出
 - 增加模块类型声明，修复dev运行正常，但build时报错，找不到longze-vue3-video-player依赖bug
+- 增加控制拖动滚动条属性方法，反转speed
 # 使用指南
 
 ## 安装
@@ -366,6 +368,8 @@ longze-vue3-video-player 支持 video 原生所有事件 [video 默认事件](ht
 | play       | 开始播放时触发                                | event |
 | pause      | 暂停时触发                                    | event |
 | destroyHLS | 销毁Hls 实例，停止持续拉取直播流 （适用m3u8） | event |
+| reversePropsSpeed | 控制speed属性，反转speed | event |
+
 
 ## 快捷键说明
 
