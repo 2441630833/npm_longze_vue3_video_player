@@ -2,6 +2,7 @@
 
 ### longze-vue3-video-player
 [本项目Github源码链接](https://github.com/2441630833/npm_longze_vue3_video_player)<br>
+[本项目npm包链接](https://www.npmjs.com/package/longze-vue3-video-player)<br>
 1、修复全局引入无效的bug
 2、增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 3、增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
@@ -24,8 +25,8 @@
 9. 支持 hls 视频流播放，支持直播
 10. hls 播放支持清晰度切换
 
-## 近期更新 v1.1.6 🎉
-
+## 近期更新 v1.1.7 🎉
+- 更新README
 - 修复全局引入无效的bug,增加模块类型声明
 - 增加视频类型判断，避免自动停止HLS请求影响到mp4等其他格式视频暂停播放
 - 增加暂停自动停止HLS请求功能，点击播放重新拉取HLS请求
@@ -63,7 +64,6 @@ import App from "./App.vue";
 let app = createApp(App);
 
 import longzeVideoPlay from "longze-vue3-video-player"; // 引入组件
-import "longze-vue3-video-player/dist/style.css"; // 引入css
 app.use(longzeVideoPlay);
 
 app.mount("#app");
@@ -82,8 +82,6 @@ app.mount("#app");
 
 #### 组件内引入直接使用
 ```js
-// require style
-import "longze-vue3-video-player/dist/style.css";
 import { longzeVideoPlay } from "longze-vue3-video-player";
 export default {
   components: {

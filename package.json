@@ -1,7 +1,7 @@
 {
   "name": "longze-vue3-video-player",
-  "version": "1.1.6",
-  "description": "增加控制拖动滚动条属性方法，反转speed方法，修复props控制speed失效bug",
+  "version": "1.1.7",
+  "description": "更新README",
   "files": [
     "lib"
   ],
@@ -14,7 +14,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "docs:pub": "sh ./scripts/gh-pages.sh"
+    "docs:pub": "sh ./scripts/gh-pages.sh",
+    "npm:publish": "npm publish"
   },
   "author": {
     "name": "longze",
